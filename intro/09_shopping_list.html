@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Shopping List</h1>
+  <input id="item-input" type="text">
+  <button id="add-button">ADD</button>
+  <ul id="shopping-list">
+    <!-- <li>샴푸</li>
+    <li>세제</li> -->
+    
+  </ul>
+  <script>
+    // 1. input 태그를 찾기
+    const input = document.querySelector('#item-input')
+    // 2. button 태그 찾기
+    const button = document.querySelector('#add-button')
+    // 3. ul 태그 찾기
+    const ul = document.querySelector('#shopping-list')
+
+
+    button.addEventListener('click', function(e){
+      // 사용자가 입력한 데이터 가져오기
+      const itemValue = input.value
+      input.value = ''
+
+      // 데이터를 이용해서 li태그로 묶어주기
+      // <li></li>
+      const tag = document.createElement('li')
+      //tag.innerText = itemValue
+
+      // span 태그 넣어주기
+      // <span></span>
+      const span = document.createElement('span')
+      span.innerText = itemValue
+
+
+      // ul 태그의 자식요소로 tag를 추가
+      tag.appendChild(span)
+      ul.appendChild(tag)
+
+      
+      // 삭제버튼 만들기
+      const deleteBtn = document.createElement('button')
+      deleteBtn.innerText = '삭제'
+
+      // 삭제버튼 이벤트 추가
+      deleteBtn.addEventListener('click', function(e){
+        //console.log(e)
+        tag.remove()
+      })
+
+      // 삭제버튼 tag의 자식요소로 추가
+      tag.appendChild(deleteBtn)
+      console.log(deleteBtn)
+
+      // 취소선 이벤트 넣기
+      span.addEventListener('click', function(e){
+        if(span.style.textDecoration === ''){
+          span.style.textDecoration = 'line-through'
+          span.style.textDecorationColor = 'red'
+          span.style.textDecorationStyle = 'wavy'
+        }
+        else{
+          span.style.textDecoration = ''
+        }
+      })
+    })
+
+  </script>
+</body>
+</html>
